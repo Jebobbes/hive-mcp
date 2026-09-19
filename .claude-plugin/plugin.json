@@ -1,0 +1,8 @@
+{
+  "name": "hive",
+  "description": "Publish, schedule, analyse and automate DMs across twelve social networks from your own connected accounts.",
+  "version": "1.0.0",
+  "homepage": "https://hivepublish.com/developers",
+  "author": { "name": "ULPI Studios", "url": "https://hivepublish.com" },
+  "keywords": ["social-media", "publishing", "scheduling", "instagram", "analytics", "dm-automation"]
+}
