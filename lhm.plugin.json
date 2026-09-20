@@ -1,0 +1,1047 @@
+{
+  "identifier": "jebobbes-hive-mcp",
+  "name": "Hive",
+  "version": "1.0.0",
+  "author": "ULPI Studios",
+  "authorUrl": "https://github.com/Jebobbes",
+  "category": "productivity",
+  "cloudEndpoint": "https://hivepublish.com/api/mcp",
+  "homepage": "https://github.com/Jebobbes/hive-mcp",
+  "icon": "https://hivepublish.com/connector-icon-512.png",
+  "description": "A colony of workers for your social media. DM automations for Instagram, Messenger, WhatsApp and TikTok; a full link-in-bio page; a shared inbox with roles and approvals; publishing and scheduling across twelve networks; and every account's analytics in one view. Nothing reaches an audience on its own — scheduling, public replies, direct messages and setting an automation live each return an approval link the account holder confirms inside Hive.",
+  "tags": [
+    "social-media",
+    "instagram",
+    "scheduling",
+    "analytics",
+    "dm-automation",
+    "publishing",
+    "marketing",
+    "inbox",
+    "tiktok",
+    "whatsapp"
+  ],
+  "tools": [
+    {
+      "name": "add_competitor",
+      "description": "Resolve a public competitor through an official provider API and store the first snapshot.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "youtube",
+              "instagram",
+              "bluesky"
+            ]
+          },
+          "handle": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "platform",
+          "handle"
+        ]
+      }
+    },
+    {
+      "name": "cancel_job",
+      "description": "Request cancellation of a queued or running asynchronous job created by this API connection.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "jobId"
+        ]
+      }
+    },
+    {
+      "name": "cancel_scheduled_post",
+      "description": "First call returns a single-use Hive approval challenge. After a human approves it in Hive, repeat the exact request with approvalToken and an Idempotency-Key.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "postId": {
+            "type": "string"
+          },
+          "approvalToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "postId"
+        ]
+      }
+    },
+    {
+      "name": "create_campaign",
+      "description": "Create an organic workspace campaign.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "goal": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "channelIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    },
+    {
+      "name": "create_draft",
+      "description": "Create an editable organic post draft. This never publishes.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string"
+          },
+          "channelIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "hashtags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mediaUrl": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "caption",
+          "channelIds"
+        ]
+      }
+    },
+    {
+      "name": "create_idea",
+      "description": "Create an idea in the workspace content board.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "brief": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "channelIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "contentFormat": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ]
+      }
+    },
+    {
+      "name": "create_podcast_show",
+      "description": "Create a draft podcast RSS show. This does not submit it to Apple, Spotify, or YouTube.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "ownerName": {
+            "type": "string"
+          },
+          "ownerEmail": {
+            "type": "string"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "itunesCategory": {
+            "type": "string"
+          },
+          "itunesSubcategory": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "explicit": {
+            "type": "boolean"
+          },
+          "itunesType": {
+            "type": "string",
+            "enum": [
+              "episodic",
+              "serial"
+            ]
+          },
+          "copyright": {
+            "type": "string"
+          },
+          "websiteUrl": {
+            "type": "string"
+          },
+          "feedMedia": {
+            "type": "string",
+            "enum": [
+              "audio",
+              "video"
+            ]
+          },
+          "slug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "ownerEmail",
+          "imageUrl"
+        ]
+      }
+    },
+    {
+      "name": "create_report",
+      "description": "Create a saved analytics report from an existing Hive template.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "templateKey": {
+            "type": "string",
+            "enum": [
+              "cross-network",
+              "network",
+              "post-performance",
+              "audience-growth",
+              "competitor",
+              "listening",
+              "campaign",
+              "inbox-productivity",
+              "executive-summary"
+            ]
+          },
+          "channelIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "title"
+        ]
+      }
+    },
+    {
+      "name": "create_saved_reply",
+      "description": "Create an internal saved reply. This does not send it to anyone.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "body"
+        ]
+      }
+    },
+    {
+      "name": "create_simple_automation",
+      "description": "Build one of the six Hive simple automations as a DRAFT on a connected account. It never goes live and never messages anyone: it writes the automation, then reports in plain words everything that still blocks Go Live.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "recipe": {
+            "type": "string",
+            "enum": [
+              "comment-link",
+              "story-leads",
+              "dm-faq",
+              "comment-follow-gate",
+              "comment-affiliate-links",
+              "default-reply"
+            ],
+            "description": "Which Hive simple automation to build."
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The connected Hive account this automation runs on."
+          },
+          "name": {
+            "type": "string",
+            "description": "Optional name for the automation. The recipe name is used when omitted."
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The words a comment or message must contain."
+          },
+          "replyText": {
+            "type": "string",
+            "description": "The message the automation sends."
+          },
+          "linkUrl": {
+            "type": "string",
+            "description": "The destination the link message opens."
+          },
+          "linkButtonLabel": {
+            "type": "string",
+            "description": "The label on the button people tap to ask for the link."
+          },
+          "publicReplyText": {
+            "type": "string",
+            "description": "A public reply to the comment. Supplying it switches the public reply step on."
+          },
+          "options": {
+            "type": "object",
+            "properties": {
+              "askEmail": {
+                "type": "boolean",
+                "description": "Switch on the step that asks for an email address."
+              },
+              "askFollow": {
+                "type": "boolean",
+                "description": "Switch on the step that asks the person to follow first."
+              },
+              "followUp": {
+                "type": "boolean",
+                "description": "Switch on the later follow-up message."
+              },
+              "followUpText": {
+                "type": "string",
+                "description": "The words of that follow-up message."
+              },
+              "emailPrompt": {
+                "type": "string",
+                "description": "The words used when asking for the email address."
+              },
+              "privacyPolicyUrl": {
+                "type": "string",
+                "description": "The privacy policy shown with the email ask."
+              }
+            }
+          }
+        },
+        "required": [
+          "recipe",
+          "accountId"
+        ]
+      }
+    },
+    {
+      "name": "create_tag",
+      "description": "Create an internal workspace content tag.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    },
+    {
+      "name": "fetch",
+      "description": "Return the full stored record for one id returned by search.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "An id from a search result."
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "list_automation_recipes",
+      "description": "List the six Hive simple automations a person can build here — what each one does, which channel it runs on, what you must supply, and which extra steps it can switch on — plus the Hive canvas templates that only open inside Hive.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "list_connected_accounts",
+      "description": "List the social accounts connected to this Hive workspace and, for every kind of start an automation can use, whether it can go live on that account right now — with the plain reason when it cannot. No tokens or private messages are returned.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "pause_automation",
+      "description": "First call returns a single-use Hive approval challenge. After a human approves it in Hive, repeat the exact request with approvalToken and an Idempotency-Key.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "automationId": {
+            "type": "string"
+          },
+          "approvalToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "automationId"
+        ]
+      }
+    },
+    {
+      "name": "pause_automation_flow",
+      "description": "First call returns a single-use Hive approval challenge. After a human approves it in Hive, repeat the exact request with approvalToken and an Idempotency-Key.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "flowId": {
+            "type": "string",
+            "description": "The Hive automation to pause."
+          },
+          "approvalToken": {
+            "type": "string",
+            "description": "Single-use token returned by Hive after the owner approves this exact action."
+          }
+        },
+        "required": [
+          "flowId"
+        ]
+      }
+    },
+    {
+      "name": "queue_competitor_refresh",
+      "description": "Queue a provider-backed refresh for all or selected tracked competitors and return an asynchronous job ID.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "competitorIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Optional competitor IDs; omit to refresh all tracked competitors."
+          }
+        }
+      }
+    },
+    {
+      "name": "read_advocacy",
+      "description": "Read employee-advocacy content and approval state.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "read_analytics_summary",
+      "description": "Read the latest organic metrics for each connected account, plus recently captured post metrics. Media URLs are not included in this result.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "channelIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "limit": {
+            "type": "number",
+            "description": "How many recent posts to include, 1 to 100. Defaults to 25."
+          }
+        }
+      }
+    },
+    {
+      "name": "read_approval_workflows",
+      "description": "Read approval workflow definitions and recent approval runs.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "read_automation_flow",
+      "description": "Read one Hive automation: whether it is a draft, live or paused, what starts it, its steps in plain words, when it went live, and what still blocks Go Live while it is a draft.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "flowId": {
+            "type": "string",
+            "description": "The Hive automation id."
+          }
+        },
+        "required": [
+          "flowId"
+        ]
+      }
+    },
+    {
+      "name": "read_automation_results",
+      "description": "Read the recent runs of one Hive automation with their outcomes and counts, and — when Hive stored an incoming event that started nothing — one plain line saying why it did not fire.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "flowId": {
+            "type": "string",
+            "description": "The Hive automation id."
+          },
+          "limit": {
+            "type": "number",
+            "description": "How many recent runs to return, from 1 to 100."
+          }
+        },
+        "required": [
+          "flowId"
+        ]
+      }
+    },
+    {
+      "name": "read_automations",
+      "description": "Read comment and DM automation configuration, state, and aggregate results.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "read_best_times",
+      "description": "Read configured posting schedules and recent post timing evidence. Each result states which of the two it came from.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "channelIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "read_calendar",
+      "description": "Read scheduled, draft, approval, failed and recently published workflow items.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "channelIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "read_campaigns_and_tags",
+      "description": "List campaigns and internal post tags.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "read_channels",
+      "description": "List connected organic channels and their connection health. No tokens or secrets are returned.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "read_competitors",
+      "description": "Read tracked public competitors and stored official-provider snapshots.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "read_content_page",
+      "description": "Read an opaque cursor-paginated page of posts, ideas, or campaigns without changing the legacy list tools.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "resource": {
+            "type": "string",
+            "enum": [
+              "posts",
+              "ideas",
+              "campaigns"
+            ]
+          },
+          "cursor": {
+            "type": "string",
+            "description": "Opaque nextCursor from the previous page."
+          },
+          "pageSize": {
+            "type": "number",
+            "description": "1 to 100 items."
+          }
+        },
+        "required": [
+          "resource"
+        ]
+      }
+    },
+    {
+      "name": "read_inbox_summary",
+      "description": "Read aggregate inbox status counts only. Never returns DMs, message bodies, contact PII, or private records.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "read_inbox_threads",
+      "description": "Read owner-enabled, redacted Inbox threads. Defaults to unavailable; raw contacts, private notes, secrets, and unredacted bodies are never returned.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    {
+      "name": "read_job_page",
+      "description": "Read an opaque cursor-paginated page of asynchronous developer jobs.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "type": "string",
+            "description": "Opaque nextCursor from the previous page."
+          },
+          "pageSize": {
+            "type": "number",
+            "description": "1 to 100 items."
+          }
+        }
+      }
+    },
+    {
+      "name": "read_jobs",
+      "description": "Read recent asynchronous developer jobs and their progress.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    {
+      "name": "read_listening",
+      "description": "Read saved listening queries, provider coverage, and aggregate snapshot metrics.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "read_podcasts",
+      "description": "Read podcast shows, episodes, RSS metadata, and distribution state without owner contact details.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "read_portfolio",
+      "description": "List the connected user's permitted Hive workspaces for Queen multi-brand routing.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "read_posts",
+      "description": "Read public canonical post history for evidence, pattern analysis, and repurposing. Date filters apply to the native publication time.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "channelIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dateFrom": {
+            "type": "string",
+            "description": "Inclusive ISO publication-date lower bound."
+          },
+          "dateTo": {
+            "type": "string",
+            "description": "Inclusive ISO publication-date upper bound."
+          },
+          "limit": {
+            "type": "number",
+            "description": "Maximum posts to return, from 1 to 250."
+          }
+        }
+      }
+    },
+    {
+      "name": "read_product_knowledge",
+      "description": "Explain Hive screens, metric semantics, capabilities, limitations, and organic-only rules.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "read_report_schedules",
+      "description": "Read configured report delivery schedules without exposing recipient addresses.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "read_reports",
+      "description": "List saved report definitions and delivery-safe metadata.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "read_reviews",
+      "description": "Read review operations and assignment state. Provider-live review bodies and reviewer identities remain excluded.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "reply_to_comment",
+      "description": "First call returns a single-use Hive approval challenge. After a human approves it in Hive, repeat the exact request with approvalToken and an Idempotency-Key.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "threadId": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "approvalToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "threadId",
+          "body"
+        ]
+      }
+    },
+    {
+      "name": "reschedule_post",
+      "description": "First call returns a single-use Hive approval challenge. After a human approves it in Hive, repeat the exact request with approvalToken and an Idempotency-Key.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "postId": {
+            "type": "string"
+          },
+          "runAt": {
+            "type": "string"
+          },
+          "approvalToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "postId",
+          "runAt"
+        ]
+      }
+    },
+    {
+      "name": "schedule_post",
+      "description": "First call returns a single-use Hive approval challenge. After a human approves it in Hive, repeat the exact request with approvalToken and an Idempotency-Key.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "postId": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string"
+          },
+          "mediaUrl": {
+            "type": "string"
+          },
+          "channelIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "runAt": {
+            "type": "string"
+          },
+          "approvalToken": {
+            "type": "string",
+            "description": "Single-use token returned by Hive after the owner approves the exact proposal."
+          }
+        },
+        "required": [
+          "channelIds",
+          "runAt"
+        ]
+      }
+    },
+    {
+      "name": "search",
+      "description": "Search this workspace’s posts, ideas and campaigns by keyword. Returns an id, a title and a link for each match; pass an id to fetch for the full record.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "What to look for."
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    },
+    {
+      "name": "send_direct_message",
+      "description": "First call returns a single-use Hive approval challenge. After a human approves it in Hive, repeat the exact request with approvalToken and an Idempotency-Key.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "channelId": {
+            "type": "string"
+          },
+          "recipientId": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "approvalToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "channelId",
+          "recipientId",
+          "text"
+        ]
+      }
+    },
+    {
+      "name": "set_automation_live",
+      "description": "First call returns a single-use Hive approval challenge. After a human approves it in Hive, repeat the exact request with approvalToken and an Idempotency-Key.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "flowId": {
+            "type": "string",
+            "description": "The Hive automation to set live."
+          },
+          "approvalToken": {
+            "type": "string",
+            "description": "Single-use token returned by Hive after the owner approves this exact action."
+          }
+        },
+        "required": [
+          "flowId"
+        ]
+      }
+    },
+    {
+      "name": "update_draft",
+      "description": "Update the title, caption, hashtags, or channels of an existing draft. Never publishes.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "postId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string"
+          },
+          "hashtags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "channelIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "postId"
+        ]
+      }
+    },
+    {
+      "name": "update_simple_automation",
+      "description": "Rewrite the draft of an existing Hive simple automation with new words, link, account or extra steps. It stays a draft and sends nothing.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "flowId": {
+            "type": "string",
+            "description": "The Hive automation to change."
+          },
+          "recipe": {
+            "type": "string",
+            "enum": [
+              "comment-link",
+              "story-leads",
+              "dm-faq",
+              "comment-follow-gate",
+              "comment-affiliate-links",
+              "default-reply"
+            ],
+            "description": "Which Hive simple automation this is."
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The connected Hive account this automation runs on."
+          },
+          "name": {
+            "type": "string",
+            "description": "Optional new name."
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The words a comment or message must contain."
+          },
+          "replyText": {
+            "type": "string",
+            "description": "The message the automation sends."
+          },
+          "linkUrl": {
+            "type": "string",
+            "description": "The destination the link message opens."
+          },
+          "linkButtonLabel": {
+            "type": "string",
+            "description": "The label on the button people tap to ask for the link."
+          },
+          "publicReplyText": {
+            "type": "string",
+            "description": "A public reply to the comment. Supplying it switches the public reply step on."
+          },
+          "options": {
+            "type": "object",
+            "properties": {
+              "askEmail": {
+                "type": "boolean",
+                "description": "Switch on the step that asks for an email address."
+              },
+              "askFollow": {
+                "type": "boolean",
+                "description": "Switch on the step that asks the person to follow first."
+              },
+              "followUp": {
+                "type": "boolean",
+                "description": "Switch on the later follow-up message."
+              },
+              "followUpText": {
+                "type": "string",
+                "description": "The words of that follow-up message."
+              },
+              "emailPrompt": {
+                "type": "string",
+                "description": "The words used when asking for the email address."
+              },
+              "privacyPolicyUrl": {
+                "type": "string",
+                "description": "The privacy policy shown with the email ask."
+              }
+            }
+          }
+        },
+        "required": [
+          "flowId",
+          "recipe",
+          "accountId"
+        ]
+      }
+    }
+  ]
+}

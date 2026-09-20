@@ -88,6 +88,17 @@ demo login to a workspace with live channels, posts, analytics and automations
 in it, same day. Nothing in that workspace can post or message anyone without a
 separate confirmation inside Hive, so it is safe to click through.
 
+## LobeHub
+
+`lhm.plugin.json` in this repo is the LobeHub Marketplace manifest, generated
+from the live server: 49 tools with their real schemas, pointing at
+`https://hivepublish.com/api/mcp`. Publish with:
+
+```bash
+npx -y @lobehub/market-cli login
+npx -y @lobehub/market-cli plugin publish
+```
+
 ## Automation platforms
 
 Hive also publishes a plain REST surface with an OpenAPI 3.1 document, so tools
