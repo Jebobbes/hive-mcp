@@ -78,6 +78,14 @@ sign in to Hive, choose the workspace.
 Sign-in is OAuth 2.1 with PKCE and dynamic client registration, or a scoped
 API key issued in Hive under Settings → API.
 
+## For reviewers
+
+Hive needs a real account with connected social channels to show anything, so a
+fresh sign-up looks empty. Email <support@hivepublish.com> and we will send a
+demo login to a workspace with live channels, posts, analytics and automations
+in it, same day. Nothing in that workspace can post or message anyone without a
+separate confirmation inside Hive, so it is safe to click through.
+
 ## Requirements
 
 A Hive account with at least one connected channel. Every plan, including the
