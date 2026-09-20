@@ -99,6 +99,13 @@ npx -y @lobehub/market-cli login
 npx -y @lobehub/market-cli plugin publish
 ```
 
+## n8n
+
+`n8n-nodes-hive/` is a complete n8n community node — builds clean and passes
+n8n's own `eslint-plugin-n8n-nodes-base` linter with no errors. Publish with
+`npm publish` from that directory, then it installs in n8n as
+`n8n-nodes-hive`.
+
 ## Automation platforms
 
 Hive also publishes a plain REST surface with an OpenAPI 3.1 document, so tools
