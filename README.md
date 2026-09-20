@@ -62,6 +62,8 @@ locally.
 **Claude** — Settings → Connectors → Add custom connector, paste the endpoint,
 sign in to Hive, choose the workspace.
 
+**Gemini CLI** — `gemini extensions install https://github.com/Jebobbes/hive-mcp`
+
 **Clients that expect a local command** (and anything else that reads `.mcp.json`):
 
 ```json

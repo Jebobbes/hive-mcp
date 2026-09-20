@@ -1,0 +1,11 @@
+{
+  "name": "hive",
+  "version": "1.0.0",
+  "description": "Publish, schedule, analyse and automate DMs across twelve social networks from your own connected accounts.",
+  "mcpServers": {
+    "hive": {
+      "httpUrl": "https://hivepublish.com/api/mcp"
+    }
+  },
+  "contextFileName": "GEMINI.md"
+}
