@@ -64,6 +64,8 @@ sign in to Hive, choose the workspace.
 
 **Gemini CLI** — `gemini extensions install https://github.com/Jebobbes/hive-mcp`
 
+**Cline** — `cline mcp install hive https://hivepublish.com/api/mcp --transport http`
+
 **Clients that expect a local command** (and anything else that reads `.mcp.json`):
 
 ```json
