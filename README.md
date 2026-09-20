@@ -88,6 +88,19 @@ demo login to a workspace with live channels, posts, analytics and automations
 in it, same day. Nothing in that workspace can post or message anyone without a
 separate confirmation inside Hive, so it is safe to click through.
 
+## Automation platforms
+
+Hive also publishes a plain REST surface with an OpenAPI 3.1 document, so tools
+that import a spec rather than speak MCP — Zapier, Make, Pipedream, n8n,
+ChatGPT actions — can build against it directly:
+
+- Spec: <https://hivepublish.com/api/v1/openapi.json>
+- Auth: bearer token (a scoped API key from Hive, Settings → API)
+- 48 endpoints, one per tool, mirroring the MCP surface exactly
+
+The same approval rule applies: anything that would reach an audience returns an
+approval link instead of acting.
+
 ## Requirements
 
 A Hive account with at least one connected channel. Every plan, including the
