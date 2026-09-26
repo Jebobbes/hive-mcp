@@ -8,7 +8,7 @@ import type {
 export class HiveApi implements ICredentialType {
 	name = 'hiveApi';
 
-	displayName = 'Hive API';
+	displayName = 'Hive Publish API';
 
 	/* eslint-disable-next-line n8n-nodes-base/cred-class-field-documentation-url-miscased --
 	   that rule expects a docs slug and camelCases anything it is given; this field
@@ -23,7 +23,7 @@ export class HiveApi implements ICredentialType {
 			typeOptions: { password: true },
 			default: '',
 			required: true,
-			description: 'Create one in Hive under Settings → API. Scopes on the key decide which tools this node may call.',
+			description: 'Create one in Hive Publish under Settings, then API. Scopes on the key decide which tools this node may call.',
 		},
 	];
 

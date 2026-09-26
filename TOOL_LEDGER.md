@@ -1,12 +1,15 @@
-# Hive MCP connector — 47-tool execution ledger
+# Hive Publish MCP connector: execution ledger
 
-Run 2026-09-20 against production `https://hivepublish.com/api/mcp` as an
-authorised OAuth connector, on a workspace with 19 live channels (Instagram,
-Facebook, Threads, TikTok, WhatsApp, YouTube).
+The connector exposes 239 tools: 98 that only read, 141 that change something.
+This ledger records the 47 that were exercised end to end on 2026-09-20 against
+production `https://hivepublish.com/api/mcp` as an authorised OAuth connector,
+on a workspace with 19 live channels (Instagram, Facebook, Threads, TikTok,
+WhatsApp, YouTube). It is a record of that run, not a count of the surface.
 
-"challenge" = called with no `approvalToken`. That is the tool's designed first
-half: it writes a pending approval, returns the approval URL and the exact
-arguments, and reaches no audience. Nothing was approved, so nothing executed.
+"challenge" = called with no `approvalToken`, on a workspace that had switched
+on Hive approvals. That is the tool's designed first half: it writes a pending
+approval, returns the single-use approval URL and the exact arguments, and
+reaches no real person. Nothing was approved, so nothing executed.
 
 | # | Tool | How | Result |
 |---|---|---|---|
@@ -60,11 +63,11 @@ arguments, and reaches no audience. Nothing was approved, so nothing executed.
 
 ## The one not run
 
-`send_direct_message` is the only tool never invoked. It shares one code path
-with the seven tools above that were exercised through it
+`send_direct_message` is the only tool in this ledger never invoked. It shares
+one code path with the seven tools above that were exercised through it
 (`enforceConfirmation`, lib/assistant/toolRegistry.ts), which returns the
 approval challenge before any handler runs. Its gate is therefore the same gate,
-proven seven times — but it was not itself called, and this ledger does not
+proven seven times, but it was not itself called, and this ledger does not
 claim otherwise.
 
 ## Fixed during the run

@@ -1,22 +1,40 @@
 {
   "name": "n8n-nodes-hive",
   "version": "1.0.0",
-  "description": "Publish, schedule, analyse and automate DMs across twelve social networks with Hive.",
-  "keywords": ["n8n-community-node-package", "hive", "social-media", "instagram", "scheduling"],
+  "description": "Automate DMs on Instagram, Messenger, WhatsApp and Telegram, then publish to ten networks and analyse, with Hive Publish. Free 14 days, no card, then from $6 per connected account per month.",
+  "keywords": [
+    "n8n-community-node-package",
+    "hive",
+    "social-media",
+    "instagram",
+    "scheduling"
+  ],
   "license": "MIT",
   "homepage": "https://hivepublish.com",
-  "author": { "name": "ULPI Studios", "email": "support@hivepublish.com" },
-  "repository": { "type": "git", "url": "https://github.com/Jebobbes/hive-mcp.git" },
+  "author": {
+    "name": "ULPI Studios",
+    "email": "support@hivepublish.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jebobbes/hive-mcp.git"
+  },
   "main": "index.js",
   "scripts": {
-    "build": "tsc && cp -r nodes/Hive/*.svg dist/nodes/Hive/ 2>/dev/null || true",
+    "build": "tsc && mkdir -p dist/nodes/Hive && cp nodes/Hive/*.svg dist/nodes/Hive/",
     "lint": "eslint nodes credentials package.json"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "n8n": {
     "n8nNodesApiVersion": 1,
-    "credentials": ["dist/credentials/HiveApi.credentials.js"],
-    "nodes": ["dist/nodes/Hive/Hive.node.js"]
+    "credentials": [
+      "dist/credentials/HiveApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Hive/Hive.node.js"
+    ]
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^7.0.0",
@@ -24,5 +42,7 @@
     "n8n-workflow": "*",
     "typescript": "^5.4.0"
   },
-  "peerDependencies": { "n8n-workflow": "*" }
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
 }

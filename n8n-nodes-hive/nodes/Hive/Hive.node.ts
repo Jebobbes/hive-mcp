@@ -2,24 +2,26 @@ import type { INodeType, INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 
 /**
- * Declarative node. Every operation is one POST to Hive's REST surface, which
- * mirrors the MCP tools one-for-one (https://hivepublish.com/api/v1/openapi.json).
+ * Declarative node. Every operation is one POST to Hive Publish's REST surface,
+ * which mirrors the MCP tools one-for-one (https://hivepublish.com/api/v1/openapi.json).
  *
- * Read and draft operations complete immediately. Scheduling returns a
- * single-use approval URL instead of acting — the account holder confirms it
- * inside Hive. That is the product behaving correctly, not an error, so the
- * node surfaces the response as-is.
+ * Read and draft operations complete immediately. Anything that reaches a real
+ * person is confirmed first. When the workspace has switched on Hive approvals,
+ * scheduling returns a single-use link instead of acting and waits until the
+ * account holder approves the exact arguments on a page inside Hive. That is the
+ * product behaving correctly, not an error, so the node surfaces the response
+ * as-is.
  */
 export class Hive implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Hive',
+		displayName: 'Hive Publish',
 		name: 'hive',
 		icon: 'file:hive.svg',
 		group: ['output'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
-		description: 'Publish, schedule, analyse and automate DMs across twelve social networks',
-		defaults: { name: 'Hive' },
+		description: 'Automate DMs on Instagram, Messenger, WhatsApp and Telegram, then publish, schedule and analyse across ten networks. Free 14 days, no card, then from $6 per connected account per month.',
+		defaults: { name: 'Hive Publish' },
 		inputs: ['main'],
 		outputs: ['main'],
 		credentials: [{ name: 'hiveApi', required: true }],
@@ -175,7 +177,7 @@ export class Hive implements INodeType {
 				type: 'string',
 				default: '={{$workflow.id}}-{{$execution.id}}-{{$itemIndex}}',
 				required: true,
-				description: 'Reuse only when retrying this exact write. Hive uses it to avoid duplicates.',
+				description: 'Reuse only when retrying this exact write. Hive Publish uses it to avoid duplicates.',
 				displayOptions: { show: { operation: ['createDraft', 'schedulePost'] } },
 			},
 		],
