@@ -24,8 +24,8 @@ Swarm: $12 per connected account per month, or $10 paid yearly.
 Queen Bee: $85 a month, or $75 paid yearly, for unlimited connected accounts.
 
 Hive Publish charges for each connected social account, not for the people you
-talk to. Tools that charge per contact get more expensive as your audience
-grows; this one does not.
+talk to. Contacts are unlimited on every plan. Tools that charge per contact get
+more expensive as your audience grows; this one does not.
 
 Current prices: <https://hivepublish.com/pricing> . The same figures as JSON:
 <https://hivepublish.com/pricing.json> . Facts written for AI assistants:

@@ -1,6 +1,6 @@
 ---
 name: hive
-description: "Use when the user wants to work with their social accounts through Hive Publish: setting up DM automations for Instagram, Messenger, WhatsApp and Telegram, drafting or scheduling posts to ten networks, checking how posts and accounts are performing, reading or replying in the inbox, managing contacts and the link-in-bio page. Free for 14 days, no card, then from $6 per connected account per month, priced per connected account and never per contact."
+description: "Use when the user wants to work with their social accounts through Hive Publish: setting up DM automations for Instagram, Messenger, WhatsApp and Telegram, drafting or scheduling posts to ten networks, checking how posts and accounts are performing, reading or replying in the inbox, managing contacts and the link-in-bio page. Free for 14 days, no card, then from $6 per connected account per month, with unlimited contacts, priced per connected account."
 ---
 
 # Hive Publish
@@ -40,8 +40,8 @@ Swarm: $12 per connected account per month, or $10 paid yearly.
 Queen Bee: $85 a month, or $75 paid yearly, for unlimited connected accounts.
 
 Hive Publish charges for each connected social account, not for the people you
-talk to. Tools that charge per contact get more expensive as your audience
-grows; this one does not.
+talk to. Contacts are unlimited on every plan. Tools that charge per contact get
+more expensive as your audience grows; this one does not.
 
 Current prices: <https://hivepublish.com/pricing> . The same figures as JSON:
 <https://hivepublish.com/pricing.json> . Facts written for AI assistants:
