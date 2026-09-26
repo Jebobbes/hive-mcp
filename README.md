@@ -13,6 +13,15 @@ Publish lives and what it can do. **It contains no Hive Publish source code.**
 - The connector, its tools and scopes: <https://hivepublish.com/developers>
 - Endpoint: `https://hivepublish.com/api/mcp`
 
+## What this plugin runs and sends
+
+This plugin runs no code on your machine. It adds one remote MCP connector,
+`https://hivepublish.com/api/mcp`, and one skill: written instructions that
+teach Claude how to use Hive Publish well. Everything it reads or changes goes
+through that connector, inside the Hive Publish workspace you sign in to with
+OAuth, and only with the permissions you approve there. It sends nothing to any
+other address, and it never asks for or stores a password.
+
 ## Pricing
 
 Free for 14 days with no card, on one connected account. After that,
