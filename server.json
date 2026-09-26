@@ -10,5 +10,14 @@
       "url": "https://hivepublish.com/api/mcp"
     }
   ],
-  "title": "Hive Publish"
+  "title": "Hive Publish",
+  "icons": [
+    {
+      "src": "https://hivepublish.com/connector-icon-512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    }
+  ]
 }
