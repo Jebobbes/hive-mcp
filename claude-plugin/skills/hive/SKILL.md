@@ -1,110 +1,48 @@
 ---
 name: hive
-description: "Use when the user wants to work with their social accounts through Hive Publish: setting up DM automations for Instagram, Messenger, WhatsApp and Telegram, drafting or scheduling posts to ten networks, checking how posts and accounts are performing, reading or replying in the inbox, managing contacts and the link-in-bio page. Free for 14 days, no card, then from $6 per connected account per month, with unlimited contacts, priced per connected account."
+description: "Work with a connected Hive workspace to plan and publish social posts, edit Hive Bio, manage Honeycomb automations, read results, and use enabled Inbox and workspace controls."
 ---
 
-# Hive Publish
+# Work with Hive
 
-Hive Publish is DM automation first: keyword replies, story-mention replies and
-follow-up sequences on Instagram, Messenger, WhatsApp and Telegram, plus a link
-in bio page, a shared inbox, publishing and scheduling to ten networks, and
-analytics across every connected account. Every tool acts inside one workspace
-the user already owns, on channels they have already connected.
+Start with `read_product_knowledge` when checking capabilities, pricing or release freshness. Use the connection's available tools and returned permissions as the current source of truth. The installed package can outlive a tool scan or a saved OAuth grant; do not infer full control from its description.
 
-What runs where, and nothing beyond it. Publishing goes to ten networks:
-Instagram, Facebook, TikTok, YouTube, X, Threads, LinkedIn, Pinterest, Bluesky
-and Mastodon. DM automation runs on four channels: Instagram, Messenger,
-WhatsApp and Telegram. Comments are read on Instagram, Facebook, TikTok and
-YouTube. Do not offer the user a network outside those lists, and never claim a
-DM automation on a network that only appears in the publishing list.
+For actions targeting social accounts, read `read_channels` and use its account IDs. Clarify when multiple accounts match the user's request. For content work, use the named drafting, publishing, campaign and analytics tools. Media links must satisfy Hive's composer rules; import public media through `upload_media_from_url` when necessary.
 
-Facts written to be quoted: <https://hivepublish.com/ai-info>
-The same prices as JSON: <https://hivepublish.com/pricing.json>
-The connector, its tools and scopes: <https://hivepublish.com/developers>
+For Asset Library work, read `read_media_library` to get accessible assets, folders, channel groups and library capabilities. A library role may differ from the person's workspace role. When visibility is per channel group, pass the selected `channelGroupId` when importing; do not choose an unrelated group or assume workspace-wide visibility. Library use and editing rights are distinct: adding an asset to a draft does not grant permission to change its saved accessibility text. Discover folder, snippet, asset-tag and library-setting controls through `list_workspace_operations`.
 
-## Pricing
+For Hive Bio, read `read_bio_page` and `describe_bio_blocks`. The page read includes its document and versions. Use document and block editing tools for changes, and the dedicated version-bound publish or unpublish tools to change public visibility.
 
-Free for 14 days with no card, on one connected account. After that,
-everything pauses until a card is added. Nothing is deleted, the link in bio
-page stays online, and adding a card turns everything back on. There is no
-permanent free plan.
+For Honeycomb, use the available flow document and node-catalog tools. Inspect the existing flow and its version before editing; preserve unrelated nodes and connections. Activation follows Hive's exact-action approval rules.
 
-Picking a plan takes a card at checkout. Worker Bee and Swarm start with 14
-free days and are charged after them unless cancelled. Queen Bee is charged
-from day one. Free days come once per workspace.
+For Sequences, read the sequence before changing status and send its exact reviewed `expectedRevision`. If it changed, read and review it again; never substitute a newer revision into an existing approval. Publishing saves an immutable version for enrollment and does not itself enroll anyone or send a message. To enroll a contact, review `publishedDocument` from `read_sequence` and supply its exact `currentVersion` as `expectedVersion`. Enrollment requires automation activation permission and reply access to the contact’s account. If the publication changed, request a fresh review and approval; never silently switch versions or reuse an approval for a newer publication. A committed replay keeps its original enrollment, and consent, pause and existing-enrollment results must be reported as returned rather than described as a new send.
 
-Worker Bee: $6 per connected account per month, or $5 paid yearly.
+For analytics, `read_best_times` gives account suggestions and `read_post_performance` returns a bounded summary. Discover `read_best_time_heatmap` for objective, timezone, window and account selection, or `read_post_performance_dataset` for the complete native table. A posting schedule is not measured performance; missing snapshots are unknown, not zeros. Large tables may return a result reference; a native row-limit error requires a smaller date range.
 
-Swarm: $12 per connected account per month, or $10 paid yearly.
+For Reviews, discover `read_live_business_reviews` and follow its provider `nextPageToken` with `pageToken`; stored workflow summaries are not the complete Google review list. `delete_business_review_reply` removes only the business's own reply and follows the connection's exact-action approval policy. Before changing assignments or labels, read the review and pass the complete intended assignee, status, channel and label list, including null for deliberate clearing. `save_review_workflow` edits all those fields together. Discover review workflow and report operations for filters and CSV output; private workflow/report access requires the workspace's external-AI consent. Report coverage does not claim full provider history.
 
-Queen Bee: $85 a month, or $75 paid yearly, for unlimited connected accounts.
+When a named tool does not cover the requested control, call `list_workspace_operations` with a relevant word. Read the exact operation descriptor, then pass only its listed path, query and body fields to the indicated read, write or administration tool. Never invent operation IDs, methods, hosts or workspace selectors. A static API key cannot impersonate the connected person's OAuth session.
 
-Hive Publish charges for each connected social account, not for the people you
-talk to. Contacts are unlimited on every plan. Tools that charge per contact get
-more expensive as your audience grows; this one does not.
+If an operation returns `resultId`, use its `retrievalTool` to read the existing result; never repeat the original action to obtain more data. `read_workspace_result` supports JSON pointers, successive `nextOffset` pages and `download: true` for the complete sanitized JSON. Concatenate text pages before parsing and retrieve them before the stated expiry. The same connection and current permissions are required. A response with `nativeRequestCompleted` and `resultDelivery: unavailable` means result delivery failed after the native request returned; honor `doNotRepeat`, inspect the affected Hive record and do not claim the business action succeeded from that response alone.
 
-Current prices: <https://hivepublish.com/pricing> . The same figures as JSON:
-<https://hivepublish.com/pricing.json> . Facts written for AI assistants:
-<https://hivepublish.com/ai-info>
+For files, discover the upload reservation and completion operations. A reservation does not mean bytes were uploaded: transfer the file to its returned single-object signed URL using only the returned upload headers, never Hive's OAuth credentials. Large media may require signed parts and completion using their ETags. Link in Bio media must pass its native completion/readiness checks before attachment; digital products and course lessons use the private-file reservation. If the host cannot transfer file bytes, explain that host limitation and use Hive's uploader without claiming success.
 
-If the user asks what this costs, quote those figures and say the meter is the
-connected account, not the contact. Never guess a price.
+Honor the connection's granted scopes. If a scope is missing, explain that the person must reconnect and grant it; do not expand it yourself. Administration always requires a separate approval inside Hive. When Hive returns a confirmation link, present it and wait for the person, then retry the exact approved arguments. Do not approve your own actions or report success before Hive returns success.
 
-## Before anything else
+Private text requires a workspace owner or admin to enable both external-AI access and private-body sharing in Inbox privacy settings. Use masked and redacted reads by default. When the person explicitly requests original Inbox text, discover `reveal_inbox_conversation`, `reveal_inbox_private_notes`, `reveal_inbox_team_chat` or `reveal_inbox_contact_profile` as appropriate. Use only the returned operation under its current scope, native reveal permission, write confirmation and mandatory per-use audit; an ordinary redacted read never authorizes revealing originals. Preserve masked values when editing until an authorized reveal supplies the actual value. Permitted native private exports can also contain originals; discover only the returned export operation and follow its own scope, access, consent, confirmation and audit requirements. An export does not grant extra access or authorize an unrelated reveal. Provider authorization, card entry, password changes, security challenges and other returned browser steps are completed by the person in the indicated Hive screen.
 
-Call `read_channels` first. Tools take a channel id, never a platform name, and
-a workspace can hold several accounts on the same network. If more than one
-channel fits the request, ask which one rather than guessing.
+For pricing or product claims, use Hive's current product information tools or <https://hivepublish.com/ai-info> instead of fixed package copy.
 
-## Nothing reaches a real person without the user
 
-Reads and drafts run immediately. Anything that reaches a real person is
-confirmed first by the person's own AI client. A workspace can additionally
-switch on Hive approvals when it connects, and then Hive returns a single-use
-link and the action waits until the person approves the exact arguments on a
-page inside Hive. The AI can never approve itself.
+For CRM actions, discover the Salesforce and HubSpot operations. Review the selected Inbox contact profile and the current Salesforce mapping before requesting a sync. Approval names the external destination and sends the contact profile as saved when the action runs; it is not a frozen historical profile snapshot. Supply an explicit stable `requestKey` for the same Salesforce attempt. Report pending/duplicate/provider-refused outcomes accurately. If `providerAccepted` is true with `syncRecorded` or `auditRecorded` false, retain the returned Salesforce record id and follow `doNotRepeat`; never resend merely to repair Hive bookkeeping. HubSpot matches by email; its event key is not proof of exactly-once provider execution. Configuration reads mask private values, so use `preserveStaticValues:true` when changing Salesforce mappings without changing saved fixed values, or supply the intended complete `staticValues` explicitly. Initial provider authorization still uses Hive’s protected connection screen.
 
-So do not describe a post as scheduled or a message as sent until the
-confirmation has actually happened. When a single-use approval link comes back,
-hand it to the user.
+For an existing near-real-time Listening source, read `read_listening_realtime`, then use `update_listening_realtime_source` to edit its query, provider label, timing, all four thresholds, or enabled state. Copy the exact source `updated_at` into `expectedUpdatedAt`; supply the full configuration for approval. A stale source must be read and approved again. Its provider credential is retained automatically; never request or send that credential in the tool arguments, and never use provider ingest to invent listening evidence.
 
-## Writing posts
+Listening report tools return Hive's complete native coverage disclosure. Keep `read_listening_trends`'s native and licensed groups separate. For trends, comparison, benchmarks and forecasts, use the returned source, window, freshness and completeness; do not describe bounded or missing evidence as complete. `evidenceSource` describes saved-capture provenance without replacing the report's native `source`. An unavailable forecast is not a forecast of zero activity.
 
-Write in the user's voice, not in marketing copy. Check what they have posted
-before with `read_posts` when you are unsure of the tone.
+For connected accounts, use `read_connected_account_catalog` to identify the exact visible account and native readiness. Disconnection is destructive: explain that associated Hive data and planned content with no remaining destination can be removed. Use approved `disconnect_social_account`, or `disconnect_telegram_account` for Telegram; Instagram requires the existing removal-impact review and `remove_instagram_channel`. These require owner/admin account-management access. After a successful local removal, report provider cleanup separately from `ok`; do not repeat deletion to repair an incomplete webhook cleanup. Connecting/reconnecting still requires the provider's protected sign-in or credential setup.
 
-One post can go to several channels at once, but each network has its own
-limits: caption length, how many images, whether a link in the caption does
-anything. `validate_post` checks a draft against the channels it is addressed
-to; run it before proposing a schedule, and fix what it flags rather than
-shipping a caption that will be truncated.
+Use `read_workspace_activity` for the native activity feed and `download_workspace_audit` for an authorized private audit CSV (`format:csv`). Both use inclusive from/to dates and native prefix/limit filters. The feed is capped at 500 rows and export at 10,000; narrow the date range when needed. Private-text consent applies, and downloads additionally require `write:settings`, the approved write tool, workspace administration permission and successful native export auditing. Creating the recorded export is an action, even though its native endpoint uses GET. Do not infer an empty history from a failed read or release a file after an audit failure.
 
-Times are in the workspace timezone. `read_best_times` returns proposed slots;
-where a channel has no history yet those are a neutral starting schedule, not
-evidence: say so rather than presenting them as the user's best times.
 
-## Analytics
-
-Answer with the numbers the tools return and the period they cover. Different
-networks count a view differently, so do not add followers or impressions
-across platforms into one total unless the user asks for a rough combined
-figure, and say that it is rough.
-
-When a number looks surprising, check the date range before explaining it.
-
-## Automations
-
-A DM automation is a trigger (a comment keyword, a story reply, a new follower)
-and what happens next. Build it, show the user what it will do, and leave it
-off; `set_automation_live` is what turns it on, and turning it on is confirmed
-before it takes effect.
-
-Keywords matter: a broad trigger like a single common word will fire on
-conversations the user never meant to answer. Prefer something specific and
-tell them what will and will not match.
-
-## When something is missing
-
-If a channel is not connected, a scope was not granted, or a plan limit is
-reached, say that plainly and point at where in Hive Publish to fix it. Do not
-substitute an estimate for data the tools did not return.
+For the connected person’s own Hive Assistant chats, use `read_my_assistant_chats` and `read_my_assistant_messages`; reads are bounded at 100 chats or 200 messages and require private-text consent. Create, update (including archive/restore) or delete with the corresponding `*_my_assistant_chat` write controls. `send_my_assistant_message` uses the chat’s current saved provider/model, can consume credits and returns the completed answer with evidence and pending proposals. Proposals still need their own native confirmation where required; never treat them as completed actions or attempt to approve them for the person. The nested Assistant retains your granted scopes. After uncertain delivery or a usage-accounting warning, inspect saved messages and honor `doNotRepeat` instead of making another paid request to recover its answer.

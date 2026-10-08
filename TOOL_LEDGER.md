@@ -1,6 +1,6 @@
 # Hive Publish MCP connector: execution ledger
 
-The connector exposes 239 tools: 98 that only read, 141 that change something.
+The original September record reported 239 tools: 98 read-only and 141 write tools. This historical figure is not today's advertised or permission-filtered tool count.
 This ledger records the 47 that were exercised end to end on 2026-09-20 against
 production `https://hivepublish.com/api/mcp` as an authorised OAuth connector,
 on a workspace with 19 live channels (Instagram, Facebook, Threads, TikTok,
