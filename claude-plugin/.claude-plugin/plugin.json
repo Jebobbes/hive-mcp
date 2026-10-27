@@ -1,8 +1,8 @@
 {
   "name": "hive-publish",
-  "displayName": "Hive Publish",
-  "description": "Plan and publish social posts, manage DM automations and Hive Bio, and read results in your connected Hive workspace.",
-  "version": "1.1.2",
+  "displayName": "Hive",
+  "description": "Manage DM automations and Hive Bio, plan and publish social posts, and read results in your connected Hive workspace.",
+  "version": "1.1.4",
   "homepage": "https://hivepublish.com",
   "author": {
     "name": "ULPI Studios",

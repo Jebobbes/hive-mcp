@@ -1,6 +1,6 @@
 {
   "identifier": "hive-publish",
-  "name": "Hive Publish",
+  "name": "Hive",
   "version": "1.0.0",
   "author": "ULPI Studios",
   "authorUrl": "https://github.com/Jebobbes",
@@ -8,7 +8,7 @@
   "cloudEndpoint": "https://hivepublish.com/api/mcp",
   "homepage": "https://hivepublish.com",
   "icon": "https://hivepublish.com/connector-icon-512.png",
-  "description": "Automates DMs on Instagram, Messenger, WhatsApp and Telegram, plus a link in bio page, a shared inbox with roles and approvals, publishing and scheduling to ten networks, and every connected account's analytics in one view. Reads and drafts run immediately. Anything that reaches a real person is confirmed first by the person's own AI client, and a workspace can additionally switch on Hive approvals so the action waits for a person to approve the exact arguments on a page inside Hive. Free for 14 days, no card. Then $6 per connected account per month on Worker Bee, $12 on Swarm, or $85 a month flat on Queen Bee. Unlimited contacts, priced per connected account. Prices: https://hivepublish.com/pricing.json",
+  "description": "Automates DMs on Instagram, Messenger, WhatsApp and Telegram, plus a Hive Bio page, a shared inbox with roles and approvals, publishing and scheduling to ten networks, and every connected account's analytics in one view. Reads and drafts run immediately. Anything that reaches a real person is confirmed first by the person's own AI client, and a workspace can additionally switch on Hive approvals so the action waits for a person to approve the exact arguments on a page inside Hive. Free for 14 days, no card. Then $6 per connected account per month on Worker Bee, $12 on Swarm, or $85 a month flat on Queen Bee. Unlimited contacts, priced per connected account. Prices: https://hivepublish.com/pricing.json",
   "tags": [
     "dm-automation",
     "instagram",
@@ -242,7 +242,7 @@
     },
     {
       "name": "create_report",
-      "description": "Create a saved analytics report from an existing Hive Publish template.",
+      "description": "Create a saved analytics report from an existing Hive template.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -296,7 +296,7 @@
     },
     {
       "name": "create_simple_automation",
-      "description": "Build one of the six Hive Publish simple automations as a DRAFT on a connected account. It never goes live and never messages anyone: it writes the automation, then reports in plain words everything that still blocks Go Live.",
+      "description": "Build one of the six Hive simple automations as a DRAFT on a connected account. It never goes live and never messages anyone: it writes the automation, then reports in plain words everything that still blocks Go Live.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -310,11 +310,11 @@
               "comment-affiliate-links",
               "default-reply"
             ],
-            "description": "Which Hive Publish simple automation to build."
+            "description": "Which Hive simple automation to build."
           },
           "accountId": {
             "type": "string",
-            "description": "The connected Hive Publish account this automation runs on."
+            "description": "The connected Hive account this automation runs on."
           },
           "name": {
             "type": "string",
@@ -415,7 +415,7 @@
     },
     {
       "name": "list_automation_recipes",
-      "description": "List the six Hive Publish simple automations a person can build here: what each one does, which channel it runs on, what you must supply, and which extra steps it can switch on: plus the Hive Publish canvas templates that only open inside Hive Publish.",
+      "description": "List the six Hive simple automations a person can build here: what each one does, which channel it runs on, what you must supply, and which extra steps it can switch on: plus the Hive canvas templates that only open inside Hive.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -423,7 +423,7 @@
     },
     {
       "name": "list_connected_accounts",
-      "description": "List the social accounts connected to this Hive Publish workspace and, for every kind of start an automation can use, whether it can go live on that account right now: with the plain reason when it cannot. No tokens or private messages are returned.",
+      "description": "List the social accounts connected to this Hive workspace and, for every kind of start an automation can use, whether it can go live on that account right now: with the plain reason when it cannot. No tokens or private messages are returned.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -455,11 +455,11 @@
         "properties": {
           "flowId": {
             "type": "string",
-            "description": "The Hive Publish automation to pause."
+            "description": "The Hive automation to pause."
           },
           "approvalToken": {
             "type": "string",
-            "description": "Single-use token returned by Hive Publish after the owner approves this exact action."
+            "description": "Single-use token returned by Hive after the owner approves this exact action."
           }
         },
         "required": [
@@ -520,13 +520,13 @@
     },
     {
       "name": "read_automation_flow",
-      "description": "Read one Hive Publish automation: whether it is a draft, live or paused, what starts it, its steps in plain words, when it went live, and what still blocks Go Live while it is a draft.",
+      "description": "Read one Hive automation: whether it is a draft, live or paused, what starts it, its steps in plain words, when it went live, and what still blocks Go Live while it is a draft.",
       "inputSchema": {
         "type": "object",
         "properties": {
           "flowId": {
             "type": "string",
-            "description": "The Hive Publish automation id."
+            "description": "The Hive automation id."
           }
         },
         "required": [
@@ -536,13 +536,13 @@
     },
     {
       "name": "read_automation_results",
-      "description": "Read the recent runs of one Hive Publish automation with their outcomes and counts, and when Hive Publish stored an incoming event that started nothing: one plain line saying why it did not fire.",
+      "description": "Read the recent runs of one Hive automation with their outcomes and counts, and when Hive stored an incoming event that started nothing: one plain line saying why it did not fire.",
       "inputSchema": {
         "type": "object",
         "properties": {
           "flowId": {
             "type": "string",
-            "description": "The Hive Publish automation id."
+            "description": "The Hive automation id."
           },
           "limit": {
             "type": "number",
@@ -714,7 +714,7 @@
     },
     {
       "name": "read_portfolio",
-      "description": "List the connected user's permitted Hive Publish workspaces for Queen multi-brand routing.",
+      "description": "List the connected user's permitted Hive workspaces for Queen multi-brand routing.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -749,7 +749,7 @@
     },
     {
       "name": "read_product_knowledge",
-      "description": "Explain Hive Publish screens, metric semantics, capabilities, limitations, and organic-only rules.",
+      "description": "Explain Hive screens, metric semantics, capabilities, limitations, and organic-only rules.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -849,7 +849,7 @@
           },
           "approvalToken": {
             "type": "string",
-            "description": "Single-use token returned by Hive Publish after the owner approves the exact proposal."
+            "description": "Single-use token returned by Hive after the owner approves the exact proposal."
           }
         },
         "required": [
@@ -908,11 +908,11 @@
         "properties": {
           "flowId": {
             "type": "string",
-            "description": "The Hive Publish automation to set live."
+            "description": "The Hive automation to set live."
           },
           "approvalToken": {
             "type": "string",
-            "description": "Single-use token returned by Hive Publish after the owner approves this exact action."
+            "description": "Single-use token returned by Hive after the owner approves this exact action."
           }
         },
         "required": [
@@ -955,13 +955,13 @@
     },
     {
       "name": "update_simple_automation",
-      "description": "Rewrite the draft of an existing Hive Publish simple automation with new words, link, account or extra steps. It stays a draft and sends nothing.",
+      "description": "Rewrite the draft of an existing Hive simple automation with new words, link, account or extra steps. It stays a draft and sends nothing.",
       "inputSchema": {
         "type": "object",
         "properties": {
           "flowId": {
             "type": "string",
-            "description": "The Hive Publish automation to change."
+            "description": "The Hive automation to change."
           },
           "recipe": {
             "type": "string",
@@ -973,11 +973,11 @@
               "comment-affiliate-links",
               "default-reply"
             ],
-            "description": "Which Hive Publish simple automation this is."
+            "description": "Which Hive simple automation this is."
           },
           "accountId": {
             "type": "string",
-            "description": "The connected Hive Publish account this automation runs on."
+            "description": "The connected Hive account this automation runs on."
           },
           "name": {
             "type": "string",

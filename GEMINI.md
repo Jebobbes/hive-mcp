@@ -1,17 +1,17 @@
-# Hive Publish
+# Hive
 
-Hive Publish is DM automation first: keyword replies, story-mention replies and
-follow-up sequences on Instagram, Messenger, WhatsApp and Telegram, plus a link
-in bio page, a shared inbox, publishing and scheduling to ten networks, and
+Hive is DM automation first: keyword replies, story-mention replies and
+follow-up sequences on Instagram, Messenger, WhatsApp and Telegram, plus a
+Hive Bio page, a shared inbox, publishing and scheduling to ten networks, and
 analytics across every connected account. Every tool acts inside one workspace
 the user already owns, on channels they have already connected.
 
-What runs where, and nothing beyond it. Publishing goes to ten networks:
+What runs where, and nothing beyond it. DM automation runs on four channels:
+Instagram, Messenger, WhatsApp and Telegram. Publishing goes to ten networks:
 Instagram, Facebook, TikTok, YouTube, X, Threads, LinkedIn, Pinterest, Bluesky
-and Mastodon. DM automation runs on four channels: Instagram, Messenger,
-WhatsApp and Telegram. Comments are read on Instagram, Facebook, TikTok and
-YouTube. Do not offer the user a network outside those lists, and never claim a
-DM automation on a network that only appears in the publishing list.
+and Mastodon. Comments are read on Instagram, Facebook, TikTok and YouTube. Do
+not offer the user a network outside those lists, and never claim a DM
+automation on a network that only appears in the publishing list.
 
 Facts written to be quoted: <https://hivepublish.com/ai-info>
 The same prices as JSON: <https://hivepublish.com/pricing.json>
@@ -20,7 +20,7 @@ The connector, its tools and scopes: <https://hivepublish.com/developers>
 ## Pricing
 
 Free for 14 days with no card, on one connected account. After that,
-everything pauses until a card is added. Nothing is deleted, the link in bio
+everything pauses until a card is added. Nothing is deleted, the Hive Bio
 page stays online, and adding a card turns everything back on. There is no
 permanent free plan.
 
@@ -34,7 +34,7 @@ Swarm: $12 per connected account per month, or $10 paid yearly.
 
 Queen Bee: $85 a month, or $75 paid yearly, for unlimited connected accounts.
 
-Hive Publish charges for each connected social account, not for the people you
+Hive charges for each connected social account, not for the people you
 talk to. Contacts are unlimited on every plan. Tools that charge per contact get
 more expensive as your audience grows; this one does not.
 
@@ -63,6 +63,17 @@ So do not describe a post as scheduled or a message as sent until the
 confirmation has actually happened. When a single-use approval link comes back,
 hand it to the user.
 
+## Automations
+
+A DM automation is a trigger (a comment keyword, a story reply, a new follower)
+and what happens next. Build it, show the user what it will do, and leave it
+off; `set_automation_live` is what turns it on, and turning it on is confirmed
+before it takes effect.
+
+Keywords matter: a broad trigger like a single common word will fire on
+conversations the user never meant to answer. Prefer something specific and
+tell them what will and will not match.
+
 ## Writing posts
 
 Write in the user's voice, not in marketing copy. Check what they have posted
@@ -87,19 +98,8 @@ figure, and say that it is rough.
 
 When a number looks surprising, check the date range before explaining it.
 
-## Automations
-
-A DM automation is a trigger (a comment keyword, a story reply, a new follower)
-and what happens next. Build it, show the user what it will do, and leave it
-off; `set_automation_live` is what turns it on, and turning it on is confirmed
-before it takes effect.
-
-Keywords matter: a broad trigger like a single common word will fire on
-conversations the user never meant to answer. Prefer something specific and
-tell them what will and will not match.
-
 ## When something is missing
 
 If a channel is not connected, a scope was not granted, or a plan limit is
-reached, say that plainly and point at where in Hive Publish to fix it. Do not
+reached, say that plainly and point at where in Hive to fix it. Do not
 substitute an estimate for data the tools did not return.
