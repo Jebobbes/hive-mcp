@@ -89,6 +89,10 @@ Times are in the workspace timezone. `read_best_times` returns proposed slots;
 where a channel has no history yet those are a neutral starting schedule, not
 evidence: say so rather than presenting them as the user's best times.
 
+## Photos and videos from the user
+
+The user attaches files once and is asked for nothing else; never ask them to upload again. If you can pass the file to `upload_media_from_url` as `file`, do that; a public https link goes in as `url`. If you have a code sandbox with the files on disk, call `prepare_sandbox_upload`, run the command it returns for each file, then call `complete_sandbox_upload` and pass the returned `media` as the post's media. If a command prints `HIVE_UPLOAD_BLOCKED`, say in one plain sentence that the user can allow the hosts in `network.allowHosts` in their sandbox network settings; never route files through another website. Only with no sandbox, or if the user cannot change that setting, call `request_media_drop`, give the user its `uploadPage` link, then `read_media_drop` with the `dropId` and use its `media`, in order. A file you can see in the chat is not in Hive until one of these tools returns it.
+
 ## Analytics
 
 Answer with the numbers the tools return and the period they cover. Different
