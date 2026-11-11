@@ -47,7 +47,7 @@ connected account, not the contact. Never guess a price.
 
 ## Before anything else
 
-Call `read_channels` first. Tools take a channel id, never a platform name, and
+A connection can cover several workspaces (one per brand). Call `list_workspaces` first when it is available. When the person names a brand, account or channel, call `switch_workspace` to the matching workspace before anything else; tools act on the current one. Then call `read_channels`. Tools take a channel id, never a platform name, and
 a workspace can hold several accounts on the same network. If more than one
 channel fits the request, ask which one rather than guessing.
 
@@ -70,6 +70,11 @@ and what happens next. Build it, show the user what it will do, and leave it
 off; `set_automation_live` is what turns it on, and turning it on is confirmed
 before it takes effect.
 
+When you report an automation, always name the workspace, the account (network
+and handle, with its profile link) and, for a post automation, the exact post
+with its permalink, date and first caption words. Use the `summary` in the
+result, and give the full `openInHive` link, never a relative path.
+
 Keywords matter: a broad trigger like a single common word will fire on
 conversations the user never meant to answer. Prefer something specific and
 tell them what will and will not match.
@@ -91,7 +96,7 @@ evidence: say so rather than presenting them as the user's best times.
 
 ## Photos and videos from the user
 
-To use photos or videos the user attached in this chat, there are three ways to add them to Hive. (a) If your app can pass the attached file itself, call `upload_media_from_url` with `file`; a public https link goes in as `url`. (b) If you have a code sandbox with the attachments on disk (often `/mnt/user-data/uploads`), call `prepare_sandbox_upload` with each file's name, size and type. Hive returns, for each file, an `uploadUrl`, the method (`PUT`), the content type and an `uploadToken`. Upload each file's bytes to its `uploadUrl` with an HTTP PUT (for example `curl -T <file> <uploadUrl>`; files over 4 MB get a direct storage `uploadUrl` that lasts 2 hours and needs the Content-Type header), then call `complete_sandbox_upload` with the `uploadToken` values in order and pass the returned `media` entries as the post's media. Use `purpose` library only when the user asks to keep a file in their Asset Library; otherwise Hive stores the files only for the post and deletes them after it publishes. A relay upload answers `HIVE_UPLOAD_OK` or `HIVE_UPLOAD_REFUSED: ...` (Hive's own message about what to fix); a direct storage upload answers HTTP 200. Any other result usually means the sandbox's network settings do not allow the hosts in `network.allowHosts`; tell the user in one plain sentence that they can allow those hosts under code execution network settings, then upload again. (c) With no sandbox, or if the user prefers, call `request_media_drop` and give the user its `uploadPage` link (some apps show an upload panel in the chat); when they say they are done, call `read_media_drop` with the `dropId` and use its `media`, in order. A file is in Hive only once one of these tools returns it.
+Photos and videos for a post, from files the user has. If your app can pass an attached file itself, call `upload_media_from_url` with `file`; a public https link goes in as `url`. Otherwise do not ask them to attach anything first: call `request_media_drop`, which shows Hive's own upload box inside the chat (if no box appears, give them its `uploadPage` link). They add the files there once, in the order they want; when it says the files are added, call `read_media_drop` with the `dropId` and pass its `media`, in order, as the post's media. Only when the files are already on disk in your code sandbox (often `/mnt/user-data/uploads`), you may call `prepare_sandbox_upload` instead: send each file to its `uploadUrl` with an HTTP PUT (for example `curl -T <file> <uploadUrl>`), then call `complete_sandbox_upload` with the `uploadToken` values in order. If a sandbox upload answers `HIVE_UPLOAD_REFUSED`, is blocked or does not answer `HIVE_UPLOAD_OK` or HTTP 200, switch to `request_media_drop` at once: do not retry it, do not explain network or app settings, and do not tell them to change any mode or setting. Use `purpose` library only when they ask to keep a file in their Asset Library. A file is in Hive only once one of these tools returns it.
 
 ## Analytics
 
@@ -107,3 +112,15 @@ When a number looks surprising, check the date range before explaining it.
 If a channel is not connected, a scope was not granted, or a plan limit is
 reached, say that plainly and point at where in Hive to fix it. Do not
 substitute an estimate for data the tools did not return.
+
+## Use the fewest calls
+
+Use the fewest calls. Every write is something the person may have to approve, so never split a job into steps Hive does in one.
+
+To post: publish_now takes the whole post (channelIds, caption, media, perPlatform options) and checks, saves and publishes in one call; schedule_post does the same with runAt. Do not call create_draft, validate_post or read_post first, and do not read the post again afterwards: the answer already carries each account's result, link and the Hive link. If one network failed, call retry_failed_post, which sends only the failed accounts and never posts twice.
+
+Photos larger than a network accepts are resized by Hive for that network, so never resize or ask the person to.
+
+To build automations: create_simple_automation, create_flow_from_brief, or create_flow with a full document each save and report in one call. To edit Hive Bio use the direct tools (set_bio_header, set_bio_design, set_bio_profile, add_bio_block, update_bio_block) instead of reading then replacing the whole page. reply_to_comment and send_direct_message are one call each.
+
+Do not re-read what a write just returned. Reads (read_*, list_*, describe_*, validate_post, search, fetch) never change anything.

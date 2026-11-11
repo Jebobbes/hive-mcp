@@ -1,7 +1,7 @@
 {
   "name": "n8n-nodes-hive",
   "version": "1.0.0",
-  "description": "Automate DMs on Instagram, Messenger, WhatsApp and Telegram, then publish to ten networks and analyse, with Hive Publish. Free 14 days, no card, then from $6 per connected account per month.",
+  "description": "Automate DMs on Instagram, Messenger, WhatsApp and Telegram, then publish to ten networks and analyse, with Hive. Free 14 days, no card, then from $6 per connected account per month.",
   "keywords": [
     "n8n-community-node-package",
     "hive",
